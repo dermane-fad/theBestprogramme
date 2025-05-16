@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const restaurantController = require('../controllers/restaurant.controller');
+import express from 'express';
+import restaurantController from '../controllers/restaurant.js';
 
+const router = express.Router();
 router.post('/', restaurantController.create);
 router.get('/', restaurantController.getAll);
 router.get('/:id', restaurantController.getById);
 router.put('/:id', restaurantController.update);
-router.delete('/:id', restaurantController.delete);
+router.delete('/:id', restaurantController.deleteRestaurant);
 
-module.exports = router;
+export default router;

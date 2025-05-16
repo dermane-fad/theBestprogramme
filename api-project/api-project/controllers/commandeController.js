@@ -1,20 +1,20 @@
-const Commande = require('../models/commande');
+import Commande from '../models/commande.js';
 
-exports.createCommande = (req, res) => {
+export const createCommande = (req, res) => {
   Commande.create(req.body, (err) => {
     if (err) return res.status(500).send(err.message);
     res.status(201).send('Commande ajoutée avec succès');
   });
 };
 
-exports.getAllCommandes = (req, res) => {
+export const getAllCommandes = (req, res) => {
   Commande.getAll((err, rows) => {
     if (err) return res.status(500).send(err.message);
     res.json(rows);
   });
 };
 
-exports.getCommandeById = (req, res) => {
+export const getCommandeById = (req, res) => {
   Commande.getById(req.params.id, (err, row) => {
     if (err) return res.status(500).send(err.message);
     if (!row) return res.status(404).send('Commande non trouvée');
@@ -22,41 +22,44 @@ exports.getCommandeById = (req, res) => {
   });
 };
 
-exports.updateCommande = (req, res) => {
+export const updateCommande = (req, res) => {
   Commande.update(req.params.id, req.body, (err) => {
     if (err) return res.status(500).send(err.message);
     res.send('Commande mise à jour avec succès');
   });
 };
 
-exports.deleteCommande = (req, res) => {
+export const deleteCommande = (req, res) => {
   Commande.delete(req.params.id, (err) => {
     if (err) return res.status(500).send(err.message);
     res.send('Commande supprimée avec succès');
   });
 };
 
-exports.getCommandesByClientId = (req, res) => {
+export const getCommandesByClientId = (req, res) => {
   Commande.getByClientId(req.params.clientId, (err, rows) => {
     if (err) return res.status(500).send(err.message);
     res.json(rows);
   });
 };
-exports.getCommandesByDate = (req, res) => {
+
+export const getCommandesByDate = (req, res) => {
   const { startDate, endDate } = req.query;
   Commande.getByDate(startDate, endDate, (err, rows) => {
     if (err) return res.status(500).send(err.message);
     res.json(rows);
   });
 };
-exports.getCommandesByMontant = (req, res) => {
+
+export const getCommandesByMontant = (req, res) => {
   const { minMontant, maxMontant } = req.query;
   Commande.getByMontant(minMontant, maxMontant, (err, rows) => {
     if (err) return res.status(500).send(err.message);
     res.json(rows);
   });
 };
-exports.getCommandesByClientIdAndDate = (req, res) => {
+
+export const getCommandesByClientIdAndDate = (req, res) => {
   const { clientId } = req.params;
   const { startDate, endDate } = req.query;
   Commande.getByClientIdAndDate(clientId, startDate, endDate, (err, rows) => {
@@ -64,7 +67,8 @@ exports.getCommandesByClientIdAndDate = (req, res) => {
     res.json(rows);
   });
 };
-exports.getCommandesByClientIdAndMontant = (req, res) => {
+
+export const getCommandesByClientIdAndMontant = (req, res) => {
   const { clientId } = req.params;
   const { minMontant, maxMontant } = req.query;
   Commande.getByClientIdAndMontant(clientId, minMontant, maxMontant, (err, rows) => {
@@ -72,11 +76,26 @@ exports.getCommandesByClientIdAndMontant = (req, res) => {
     res.json(rows);
   });
 };
-exports.getCommandesByDateAndMontant = (req, res) => {
+
+export const getCommandesByDateAndMontant = (req, res) => {
   const { startDate, endDate } = req.query;
   const { minMontant, maxMontant } = req.query;
   Commande.getByDateAndMontant(startDate, endDate, minMontant, maxMontant, (err, rows) => {
     if (err) return res.status(500).send(err.message);
     res.json(rows);
   });
+};
+
+export default {
+  createCommande,
+  getAllCommandes,
+  getCommandeById,
+  updateCommande,
+  deleteCommande,
+  getCommandesByClientId,
+  getCommandesByDate,
+  getCommandesByMontant,
+  getCommandesByClientIdAndDate,
+  getCommandesByClientIdAndMontant,
+  getCommandesByDateAndMontant
 };

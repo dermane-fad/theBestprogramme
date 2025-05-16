@@ -1,4 +1,4 @@
-const db = require('../database/database');
+import db from '../database/database.js';
 
 db.run(`
   CREATE TABLE IF NOT EXISTS Commentaire (
@@ -21,10 +21,10 @@ const Commentaire = {
     );
   },
   getAll: (cb) => db.all(`
-    SELECT co.*, c.date as dateCommande, p.nom, p.prenom 
+    SELECT co.*, c.dateCommande as dateCommande, p.nom, p.prenom 
     FROM Commentaire co
     JOIN Commande c ON co.commande_id = c.id
-    JOIN Personne p ON c.client_id = p.id
+    JOIN Personne p ON c.clientId = p.id
   `, [], cb),
   getById: (id, cb) => db.get(`
     SELECT * FROM Commentaire WHERE id = ?
@@ -45,4 +45,4 @@ const Commentaire = {
   delete: (id, cb) => db.run(`DELETE FROM Commentaire WHERE id = ?`, [id], cb)
 };
 
-module.exports = Commentaire;
+export default Commentaire;

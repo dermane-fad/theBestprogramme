@@ -1,4 +1,4 @@
-const Conge = require('../models/conge');
+import Conge from '../models/conge.js';
 
 const congeController = {
   create: (req, res) => {
@@ -62,4 +62,4 @@ const congeController = {
   }
 };
 
-module.exports = congeController;
+export default congeController;

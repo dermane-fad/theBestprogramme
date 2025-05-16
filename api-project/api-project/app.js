@@ -1,32 +1,30 @@
-const express = require('express');
-const cors = require('cors'); // ✅ ajouter ceci
-const bodyParser = require('body-parser');
-const db = require('./database/database');
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import db from './database/database.js';
+import entrepriseRoutes from './routes/entreprise.js';
+import boutiqueRoutes from './routes/boutique.js';
+import clientRoutes from './routes/client.js';
+import employeRoutes from './routes/employe.js';
+import congeRoutes from './routes/conge.js';
+import commandeRoutes from './routes/commande.js';
+import ligneCommandeRoutes from './routes/ligneCommande.js';
+import remiseRoutes from './routes/remise.js';
+import produitRoutes from './routes/produit.js';
+import categorie from './routes/categorie.js';
+import paiementRoutes from './routes/paiement.js';
+import restaurantRoutes from './routes/restaurant.js';
+import horaireRoutes from './routes/horaire.js';
+import reservationRoutes from './routes/reservation.js';
+import commentaireRoutes from './routes/commentaire.js';
+import personneRoutes from './routes/personne.js';
+import authRoutes from './routes/authRoutes.js';
+import path from 'path';
+import multer from 'multer';
+import fs from 'fs';
+
 const app = express();
-const reservationRoutes = require('./routes/reservation');
-const commentaireRoutes = require('./routes/commentaire');
-const entrepriseRoutes = require('./routes/entreprise');
-const boutiqueRoutes = require('./routes/boutique');
-const clientRoutes = require('./routes/client');
-const employeRoutes = require('./routes/employe');
-const congeRoutes = require('./routes/conge');
-const commandeRoutes = require('./routes/commande');
-const ligneCommandeRoutes = require('./routes/ligneCommande');
-const remiseRoutes = require('./routes/remise');
-const produitRoutes = require('./routes/produit');
-const categorie = require('./routes/categorie');
-const paiementRoutes = require('./routes/paiement');
-const restaurantRoutes = require('./routes/restaurant');
-const horaireRoutes = require('./routes/horaire');
-const personneRoutes = require('./routes/personne');
-const authRoutes = require('./routes/authRoutes');
-const path = require('path');
-const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-const fs = require('fs');
-
-
-
 
 // Gestion des erreurs
 app.use((err, req, res, next) => {
@@ -34,13 +32,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Quelque chose a mal tourné!' });
 });
 
-
 // ✅ Activer CORS pour toutes les origines ou spécifier Angular uniquement
 app.use(cors({
   origin: 'http://localhost:4200' // autorise uniquement Angular
 }));
 
-// Middleware pour gérer les erreurs de CORS
 app.use(bodyParser.json());
 
 // Enregistrer les routes
@@ -62,10 +58,7 @@ app.use('/api/commentaires', commentaireRoutes);
 app.use('/api/personnes', personneRoutes);
 app.use('/api/auth', authRoutes);
 
-
-// Middleware pour gérer les erreurs
 const PORT = process.env.PORT || 4000;
-// Démarrer le serveur
 app.listen(PORT, () => {
   console.log(`✅ Serveur démarré sur http://localhost:${PORT}`);
 });

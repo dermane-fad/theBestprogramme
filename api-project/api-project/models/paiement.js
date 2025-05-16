@@ -1,5 +1,4 @@
-// models/paiement.js
-const db = require('../database/database');
+import db from '../database/database.js';
 
 db.run(`
   CREATE TABLE IF NOT EXISTS Paiement (
@@ -44,4 +43,4 @@ const Paiement = {
   }
 };
 
-module.exports = Paiement;
+export default Paiement;

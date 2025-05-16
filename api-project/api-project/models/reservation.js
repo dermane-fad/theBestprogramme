@@ -1,4 +1,4 @@
-const db = require('../database/database');
+import db from '../database/database.js';
 
 db.run(`
   CREATE TABLE IF NOT EXISTS Reservation (
@@ -61,4 +61,4 @@ const Reservation = {
   delete: (id, cb) => db.run(`DELETE FROM Reservation WHERE id = ?`, [id], cb)
 };
 
-module.exports = Reservation;
+export default Reservation;

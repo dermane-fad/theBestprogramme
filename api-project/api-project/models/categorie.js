@@ -1,4 +1,5 @@
-const db = require('../database/database');
+import db from '../database/database.js';
+
 // Création de la table Categorie
 db.run(`
   CREATE TABLE IF NOT EXISTS Categorie (
@@ -29,4 +30,4 @@ const Categorie = {
   }
 };
 
-module.exports = Categorie;
+export default Categorie;

@@ -1,36 +1,45 @@
-const Restaurant = require('../models/restaurant.model');
+import Restaurant from '../models/restaurant.js';
 
-exports.create = (req, res) => {
+export const create = (req, res) => {
   Restaurant.create(req.body, function (err) {
     if (err) return res.status(500).json({ message: 'Erreur lors de la création' });
     res.status(201).json({ message: 'Restaurant créé avec succès' });
   });
 };
 
-exports.getAll = (req, res) => {
+export const getAll = (req, res) => {
   Restaurant.getAll((err, rows) => {
     if (err) return res.status(500).json({ message: 'Erreur lors de la récupération' });
     res.json(rows);
   });
 };
 
-exports.getById = (req, res) => {
+export const getById = (req, res) => {
   Restaurant.getById(req.params.id, (err, row) => {
     if (err) return res.status(500).json({ message: 'Erreur lors de la récupération' });
     res.json(row);
   });
 };
 
-exports.update = (req, res) => {
+export const update = (req, res) => {
   Restaurant.update(req.params.id, req.body, function (err) {
     if (err) return res.status(500).json({ message: 'Erreur lors de la mise à jour' });
     res.json({ message: 'Restaurant mis à jour avec succès' });
   });
 };
 
-exports.delete = (req, res) => {
+export const deleteRestaurant = (req, res) => {
   Restaurant.delete(req.params.id, function (err) {
     if (err) return res.status(500).json({ message: 'Erreur lors de la suppression' });
     res.json({ message: 'Restaurant supprimé avec succès' });
   });
+};
+
+// Exporter les fonctions pour les utiliser dans le routeur
+export default {
+  create,
+  getAll,
+  getById,
+  update,
+  deleteRestaurant
 };

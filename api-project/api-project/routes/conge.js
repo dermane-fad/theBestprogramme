@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const congeController = require('../controllers/congeController');
+import congeController from '../controllers/congeController.js';
 
 router.post('/', congeController.create);
 router.get('/', congeController.getAll);
@@ -9,4 +9,4 @@ router.get('/employe/:employeId', congeController.getByEmployeId);
 router.put('/:id', congeController.update);
 router.delete('/:id', congeController.delete);
 
-module.exports = router;
+export default router;

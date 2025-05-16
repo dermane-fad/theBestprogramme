@@ -1,41 +1,21 @@
-// Fichier : routes/ligneCommande.js
-const express = require('express');
+import express from 'express';
+import ligneCommandeController from '../controllers/ligneCommandeController.js';
+
 const router = express.Router();
-const LigneCommande = require('../models/ligneCommande');
 
-router.post('/', (req, res) => {
-  LigneCommande.create(req.body, (err) => {
-    if (err) res.status(500).send(err);
-    else res.send('Ligne de commande ajoutée');
-  });
-});
+// Créer une ligne de commande
+router.post('/', ligneCommandeController.createLigneCommande);
 
-router.get('/', (req, res) => {
-  LigneCommande.getAll((err, rows) => {
-    if (err) res.status(500).send(err);
-    else res.json(rows);
-  });
-});
+// Récupérer toutes les lignes de commande
+router.get('/', ligneCommandeController.getAllLigneCommandes);
 
-router.get('/:id', (req, res) => {
-  LigneCommande.getById(req.params.id, (err, row) => {
-    if (err) res.status(500).send(err);
-    else res.json(row);
-  });
-});
+// Récupérer une ligne de commande par ID
+router.get('/:id', ligneCommandeController.getLigneCommandeById);
 
-router.put('/:id', (req, res) => {
-  LigneCommande.update(req.params.id, req.body, (err) => {
-    if (err) res.status(500).send(err);
-    else res.send('Ligne de commande mise à jour');
-  });
-});
+// Mettre à jour une ligne de commande
+router.put('/:id', ligneCommandeController.updateLigneCommande);
 
-router.delete('/:id', (req, res) => {
-  LigneCommande.delete(req.params.id, (err) => {
-    if (err) res.status(500).send(err);
-    else res.send('Ligne de commande supprimée');
-  });
-});
+// Supprimer une ligne de commande
+router.delete('/:id', ligneCommandeController.deleteLigneCommande);
 
-module.exports = router;
+export default router;

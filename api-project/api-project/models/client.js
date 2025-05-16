@@ -1,4 +1,4 @@
-const db = require('../database/database');
+import db from '../database/database.js';
 
 db.serialize(() => {
   db.run(`
@@ -50,4 +50,4 @@ const Client = {
   }
 };
 
-module.exports = Client;
+export default Client;

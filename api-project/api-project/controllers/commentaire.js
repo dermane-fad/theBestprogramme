@@ -1,4 +1,4 @@
-const Commentaire = require('../models/commentaire');
+import Commentaire from '../models/commentaire.js';
 
 const commentaireController = {
   // Créer un nouveau commentaire
@@ -95,4 +95,4 @@ const commentaireController = {
   }
 };
 
-module.exports = commentaireController;
+export default commentaireController;

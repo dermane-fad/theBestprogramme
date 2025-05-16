@@ -1,20 +1,20 @@
-const Produit = require('../models/produit');
+import Produit from '../models/produit.js';
 
-exports.createProduit = (req, res) => {
+export const createProduit = (req, res) => {
   Produit.create(req.body, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ message: "Produit créé avec succès." });
   });
 };
 
-exports.getAllProduits = (req, res) => {
+export const getAllProduits = (req, res) => {
   Produit.getAll((err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
   });
 };
 
-exports.getProduitById = (req, res) => {
+export const getProduitById = (req, res) => {
   Produit.getById(req.params.id, (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ message: "Produit non trouvé." });
@@ -22,16 +22,25 @@ exports.getProduitById = (req, res) => {
   });
 };
 
-exports.updateProduit = (req, res) => {
+export const updateProduit = (req, res) => {
   Produit.update(req.params.id, req.body, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: "Produit mis à jour." });
   });
 };
 
-exports.deleteProduit = (req, res) => {
+export const deleteProduit = (req, res) => {
   Produit.delete(req.params.id, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: "Produit supprimé." });
   });
+};
+
+// Exporter les fonctions pour les utiliser dans le routeur
+export default {
+  createProduit,
+  getAllProduits,
+  getProduitById,
+  updateProduit,
+  deleteProduit
 };

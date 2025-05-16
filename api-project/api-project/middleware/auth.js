@@ -1,8 +1,7 @@
-// middleware/auth.js
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../config');
+import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../config/index.js';
 
-const authenticate = (req, res, next) => {
+export const authenticate = (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
   
   if (!token) {
@@ -18,7 +17,7 @@ const authenticate = (req, res, next) => {
   }
 };
 
-const authorizeRoles = (...roles) => {
+export const authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({ error: 'Accès refusé - Permissions insuffisantes' });
@@ -26,5 +25,3 @@ const authorizeRoles = (...roles) => {
     next();
   };
 };
-
-module.exports = { authenticate, authorizeRoles };

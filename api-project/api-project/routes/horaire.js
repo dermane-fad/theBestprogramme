@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import horaireController from '../controllers/horair.js';
 const router = express.Router();
-const horaireController = require('../controllers/horaire.controller');
+
 
 // ➕ Ajouter un horaire
 router.post('/', horaireController.createHoraire);
@@ -17,4 +18,4 @@ router.put('/:id', horaireController.updateHoraire);
 // ❌ Supprimer un horaire
 router.delete('/:id', horaireController.deleteHoraire);
 
-module.exports = router;
+export default router;

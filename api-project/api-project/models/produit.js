@@ -1,4 +1,5 @@
-const db = require('../database/database');
+import db from '../database/database.js';
+
 db.run(`
   CREATE TABLE IF NOT EXISTS Produit (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,9 +16,9 @@ db.run(`
 const Produit = {
   create: (data, cb) => {
     const { libelle, description, prix, quantiteStock, dateAjout, categorieId } = data;
-    db.run(`
-      INSERT INTO Produit (libelle, description, prix, quantiteStock, dateAjout, categorieId)
-      VALUES (?, ?, ?, ?, ?, ?)`,
+    db.run(
+      `INSERT INTO Produit (libelle, description, prix, quantiteStock, dateAjout, categorieId)
+       VALUES (?, ?, ?, ?, ?, ?)`,
       [libelle, description, prix, quantiteStock, dateAjout, categorieId],
       cb
     );
@@ -29,9 +30,9 @@ const Produit = {
 
   update: (id, data, cb) => {
     const { libelle, description, prix, quantiteStock, dateAjout, categorieId } = data;
-    db.run(`
-      UPDATE Produit SET libelle = ?, description = ?, prix = ?, quantiteStock = ?, dateAjout = ?, categorieId = ?
-      WHERE id = ?`,
+    db.run(
+      `UPDATE Produit SET libelle = ?, description = ?, prix = ?, quantiteStock = ?, dateAjout = ?, categorieId = ?
+       WHERE id = ?`,
       [libelle, description, prix, quantiteStock, dateAjout, categorieId, id],
       cb
     );
@@ -40,4 +41,4 @@ const Produit = {
   delete: (id, cb) => db.run(`DELETE FROM Produit WHERE id = ?`, [id], cb)
 };
 
-module.exports = Produit;
+export default Produit;

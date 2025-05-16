@@ -1,42 +1,21 @@
-const express = require('express');
+import express from 'express';
+import commandeController from '../controllers/commandeController.js';
+
 const router = express.Router();
-const Commande = require('../models/commande');
 
-router.post('/', (req, res) => {
-  Commande.create(req.body, function (err) {
-    if (err) res.status(500).send(err);
-    else res.send('Commande ajoutée');
-  });
-});
+// Créer une commande
+router.post('/', commandeController.createCommande);
 
-router.get('/', (req, res) => {
-  Commande.getAll((err, rows) => {
-    if (err) res.status(500).send(err);
-    else res.json(rows);
-  });
-});
+// Récupérer toutes les commandes
+router.get('/', commandeController.getAllCommandes);
 
-router.get('/:id', (req, res) => {
-  Commande.getById(req.params.id, (err, row) => {
-    if (err) res.status(500).send(err);
-    else res.json(row);
-  });
-});
+// Récupérer une commande par ID
+router.get('/:id', commandeController.getCommandeById);
 
-router.put('/:id', (req, res) => {
-  Commande.update(req.params.id, req.body, (err) => {
-    if (err) res.status(500).send(err);
-    else res.send('Commande mise à jour');
-  });
-});
+// Mettre à jour une commande
+router.put('/:id', commandeController.updateCommande);
 
-router.delete('/:id', (req, res) => {
-  Commande.delete(req.params.id, (err) => {
-    if (err) res.status(500).send(err);
-    else res.send('Commande supprimée');
-  });
-});
+// Supprimer une commande
+router.delete('/:id', commandeController.deleteCommande);
 
-
-
-module.exports = router;
+export default router;

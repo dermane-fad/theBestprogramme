@@ -1,5 +1,4 @@
-// utils/validation/commentaireValidation.js
-const Joi = require('joi');
+import Joi from 'joi';
 
 const commentaireSchema = Joi.object({
   libelle: Joi.string().min(10).max(500).required()
@@ -12,8 +11,6 @@ const commentaireSchema = Joi.object({
   commande_id: Joi.number().integer().required()
 });
 
-const validateCommentaire = (data) => {
+export const validateCommentaire = (data) => {
   return commentaireSchema.validate(data, { abortEarly: false });
 };
-
-module.exports = { validateCommentaire };

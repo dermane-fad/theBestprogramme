@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const personneSchema = Joi.object({
   nom: Joi.string().min(2).max(50).required(),
@@ -8,8 +8,6 @@ const personneSchema = Joi.object({
   role: Joi.string().valid('client', 'restaurateur', 'admin')
 });
 
-const validatePersonne = (data) => {
+export const validatePersonne = (data) => {
   return personneSchema.validate(data, { abortEarly: false });
 };
-
-module.exports = { validatePersonne };

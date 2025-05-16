@@ -1,7 +1,7 @@
-const db = require('../database/database');
-const bcrypt = require('bcryptjs');
-const { JWT_SECRET } = require('../config');
-
+import db from '../database/database.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../config.js';
 // Création de la table Personne
 db.run(`
   CREATE TABLE IF NOT EXISTS Personne (
@@ -21,7 +21,6 @@ const Personne = {
     try {
       const { nom, prenom, email, password, role } = data;
       const hashedPassword = await bcrypt.hash(password, 10);
-      
       db.run(
         `INSERT INTO Personne (nom, prenom, email, password, role) 
          VALUES (?, ?, ?, ?, ?)`,
@@ -170,4 +169,4 @@ const Personne = {
   }
 };
 
-module.exports = Personne;
+export default Personne;

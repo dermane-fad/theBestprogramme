@@ -1,7 +1,6 @@
-// routes/paiement.js
-const express = require('express');
+import express from 'express';
+import PaiementController from '../controllers/paiementController.js';
 const router = express.Router();
-const PaiementController = require('../controllers/paiementController');
 
 router.post('/', PaiementController.create);
 router.get('/', PaiementController.getAll);
@@ -9,4 +8,4 @@ router.get('/:id', PaiementController.getById);
 router.put('/:id', PaiementController.update);
 router.delete('/:id', PaiementController.delete);
 
-module.exports = router;
+export default router;

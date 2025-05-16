@@ -1,4 +1,4 @@
-const Client = require('../models/Client');
+import Client from '../models/client.js';
 
 const clientController = {
   createClient: (req, res) => {
@@ -50,4 +50,4 @@ const clientController = {
   }
 };
 
-module.exports = clientController;
+export default clientController;

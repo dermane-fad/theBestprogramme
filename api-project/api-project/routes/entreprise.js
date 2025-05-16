@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import entrepriseController from '../controllers/entrepriseController.js';
+
 const router = express.Router();
-const entrepriseController = require('../controllers/entrepriseController');
 
 router.post('/', entrepriseController.createEntreprise);
 router.get('/', entrepriseController.getAllEntreprises);
@@ -8,4 +9,4 @@ router.get('/:id', entrepriseController.getEntrepriseById);
 router.put('/:id', entrepriseController.updateEntreprise);
 router.delete('/:id', entrepriseController.deleteEntreprise);
 
-module.exports = router;
+export default router;

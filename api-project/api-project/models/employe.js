@@ -1,4 +1,4 @@
-const db = require('../database/database');
+import db from '../database/database.js';
 
 db.serialize(() => {
   db.run(`
@@ -50,4 +50,4 @@ const Employe = {
   }
 };
 
-module.exports = Employe;
+export default Employe;

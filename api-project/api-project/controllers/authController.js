@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const Personne = require('../models/personne');
-const { hashPassword, comparePassword } = require('../utils/passwordUtils');
-const { JWT_SECRET, JWT_EXPIRES_IN } = require('../config');
+import jwt from 'jsonwebtoken';
+import Personne from '../models/personne.js';
+import { hashPassword, comparePassword } from '../utils/passwordUtils.js';
+import { JWT_SECRET, JWT_EXPIRES_IN } from '../config.js';
 
 // Helper pour promisifier les méthodes du modèle
 const findByEmailAsync = (email) => {
@@ -125,4 +125,4 @@ const authController = {
   }
 };
 
-module.exports = authController;
+export default authController;

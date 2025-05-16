@@ -1,4 +1,4 @@
-const db = require('../database/database');
+import db from '../database/database.js';
 
 db.serialize(() => {
   db.run(`
@@ -44,4 +44,4 @@ const Horaire = {
   }
 };
 
-module.exports = Horaire;
+export default Horaire;

@@ -1,5 +1,4 @@
-// utils/validation/reservationValidation.js
-const Joi = require('joi');
+import Joi from 'joi';
 
 const reservationSchema = Joi.object({
   dateReservation: Joi.date().iso().required()
@@ -25,8 +24,6 @@ const reservationSchema = Joi.object({
   restaurant_id: Joi.number().integer().required()
 });
 
-const validateReservation = (data) => {
+export const validateReservation = (data) => {
   return reservationSchema.validate(data, { abortEarly: false });
 };
-
-module.exports = { validateReservation };

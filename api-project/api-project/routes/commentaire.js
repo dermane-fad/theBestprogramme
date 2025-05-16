@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const commentaireController = require('../controllers/commentaire');
+import commentaireController from '../controllers/commentaire.js';
 
 // Routes pour les commentaires
 router.post('/', commentaireController.createCommentaire);
@@ -10,4 +10,4 @@ router.get('/commande/:commande_id', commentaireController.getCommentairesByComm
 router.put('/:id', commentaireController.updateCommentaire);
 router.delete('/:id', commentaireController.deleteCommentaire);
 
-module.exports = router;
+export default router;

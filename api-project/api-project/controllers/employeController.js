@@ -1,4 +1,4 @@
-const Employe = require('../models/Employe');
+import Employe from '../models/employe.js';
 
 const employeController = {
   createEmploye: (req, res) => {
@@ -50,4 +50,4 @@ const employeController = {
   }
 };
 
-module.exports = employeController;
+export default employeController;

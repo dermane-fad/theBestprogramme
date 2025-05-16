@@ -1,6 +1,6 @@
-const Personne = require('../models/personne');
-const { hashPassword, comparePassword } = require('../utils/passwordUtils');
-const { validatePersonne } = require('../utils/validation/personneValidator');
+import Personne from '../models/personne.js';
+import { hashPassword, comparePassword } from '../utils/passwordUtils.js';
+import { validatePersonne } from '../utils/validation/personneValidator.js';
 
 const personneController = {
   // Créer un compte
@@ -195,4 +195,4 @@ const personneController = {
   }
 };
 
-module.exports = personneController;
+export default personneController;

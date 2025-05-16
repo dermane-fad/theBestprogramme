@@ -1,4 +1,4 @@
-const Paiement = require('../models/paiement');
+import Paiement from '../models/paiement.js';
 
 const PaiementController = {
   create: (req, res) => {
@@ -53,4 +53,4 @@ const PaiementController = {
   }
 };
 
-module.exports = PaiementController;
+export default PaiementController;

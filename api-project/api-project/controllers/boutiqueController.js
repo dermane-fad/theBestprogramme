@@ -1,7 +1,7 @@
-const Boutique = require('../models/boutique');
+import Boutique from '../models/boutique.js';
 
 // Créer une boutique
-exports.createBoutique = (req, res) => {
+export const createBoutique = (req, res) => {
   Boutique.create(req.body, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ message: "Boutique créée avec succès." });
@@ -9,7 +9,7 @@ exports.createBoutique = (req, res) => {
 };
 
 // Lister toutes les boutiques
-exports.getAllBoutiques = (req, res) => {
+export const getAllBoutiques = (req, res) => {
   Boutique.getAll((err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
@@ -17,7 +17,7 @@ exports.getAllBoutiques = (req, res) => {
 };
 
 // Obtenir une boutique par ID
-exports.getBoutiqueById = (req, res) => {
+export const getBoutiqueById = (req, res) => {
   Boutique.getById(req.params.id, (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ message: "Boutique non trouvée." });
@@ -26,7 +26,7 @@ exports.getBoutiqueById = (req, res) => {
 };
 
 // Modifier une boutique
-exports.updateBoutique = (req, res) => {
+export const updateBoutique = (req, res) => {
   Boutique.update(req.params.id, req.body, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: "Boutique mise à jour." });
@@ -34,14 +34,15 @@ exports.updateBoutique = (req, res) => {
 };
 
 // Supprimer une boutique
-exports.deleteBoutique = (req, res) => {
+export const deleteBoutique = (req, res) => {
   Boutique.delete(req.params.id, (err) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: "Boutique supprimée." });
   });
 };
+
 // Obtenir les produits d'une boutique
-exports.getProductsByBoutiqueId = (req, res) => {
+export const getProductsByBoutiqueId = (req, res) => {
   const boutiqueId = req.params.id;
   Boutique.getProductsByBoutiqueId(boutiqueId, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -49,12 +50,23 @@ exports.getProductsByBoutiqueId = (req, res) => {
     res.json(rows);
   });
 };
+
 // Obtenir les employés d'une boutique
-exports.getEmployeesByBoutiqueId = (req, res) => {
+export const getEmployeesByBoutiqueId = (req, res) => {
   const boutiqueId = req.params.id;
   Boutique.getEmployeesByBoutiqueId(boutiqueId, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!rows.length) return res.status(404).json({ message: "Aucun employé trouvé." });
     res.json(rows);
   });
+};
+
+export default {
+  createBoutique,
+  getAllBoutiques,
+  getBoutiqueById,
+  updateBoutique,
+  deleteBoutique,
+  getProductsByBoutiqueId,
+  getEmployeesByBoutiqueId
 };

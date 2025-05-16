@@ -1,4 +1,4 @@
-const Reservation = require('../models/reservation');
+import Reservation from '../models/reservation.js';
 
 const reservationController = {
   // Créer une nouvelle réservation
@@ -110,4 +110,4 @@ const reservationController = {
   }
 };
 
-module.exports = reservationController;
+export default reservationController;
